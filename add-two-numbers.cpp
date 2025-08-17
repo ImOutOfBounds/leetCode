@@ -54,12 +54,10 @@ struct ListNode {
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        string num1 = "", num2 = "";
         ListNode* current1 = l1;
         ListNode* current2 = l2;
-        int rest = 0;
 
-        int part1 = 0, part2 = 0;
+        int part1 = 0, part2 = 0, rest = 0;
         string finalSum = "";
 
         while (current1 != nullptr || current2 != nullptr || rest != 0){
@@ -84,13 +82,11 @@ public:
 
         }
 
-        std::string s = finalSum;
-
         ListNode* head = nullptr;
         ListNode* tail = nullptr;
 
-        for (int i = 0; i < (int)s.size(); ++i) {
-            int valor = s[i] - '0';
+        for (int i = 0; i < (int)finalSum.size(); ++i) {
+            int valor = finalSum[i] - '0';
             ListNode* novoNo = new ListNode(valor);
 
             if (head == nullptr) {
@@ -102,7 +98,6 @@ public:
             }
         }
 
-    
         return head;
     }
 };
