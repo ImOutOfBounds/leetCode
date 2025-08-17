@@ -57,37 +57,22 @@ public:
         ListNode* current1 = l1;
         ListNode* current2 = l2;
 
+        ListNode* head = nullptr;
+        ListNode* tail = nullptr;
+
         int part1 = 0, part2 = 0, rest = 0;
-        string finalSum = "";
 
         while (current1 != nullptr || current2 != nullptr || rest != 0){
-            if (current1 == nullptr) {
-                part1 = 0;
-            } else {
-                part1 = current1->val;
-                current1 = current1->next;
-            }   
+            part1 = (current1 != nullptr) ? current1->val : 0;
+            part2 = (current2 != nullptr) ? current2->val : 0;
 
-            if (current2 == nullptr) {
-                part2 = 0;
-            } else {
-                part2 = current2->val;
-                current2 = current2->next;
-            }   
+            if (current1 != nullptr) current1 = current1->next;
+            if (current2 != nullptr) current2 = current2->next;
 
             int localSum = part1 + part2 + rest;
             rest = localSum / 10;
             int digit = localSum % 10;
-            finalSum = finalSum + std::to_string(digit);
-
-        }
-
-        ListNode* head = nullptr;
-        ListNode* tail = nullptr;
-
-        for (int i = 0; i < (int)finalSum.size(); ++i) {
-            int valor = finalSum[i] - '0';
-            ListNode* novoNo = new ListNode(valor);
+            ListNode* novoNo = new ListNode(digit); 
 
             if (head == nullptr) {
                 head = novoNo;
